@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvdrtwmo02jlo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o2tv8"]
+
+[node name="paddle" type="Area2D"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(52, -90)
+shape = SubResource("CapsuleShape2D_o2tv8")
