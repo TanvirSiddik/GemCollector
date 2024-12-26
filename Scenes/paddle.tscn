@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvdrtwmo02jlo"]
+[gd_scene load_steps=3 format=3 uid="uid://cvdrtwmo02jlo"]
+
+[ext_resource type="Texture2D" uid="uid://ds6lv4plrfplk" path="res://assets/paddleBlu.png" id="1_4l6nu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o2tv8"]
+radius = 8.0
+height = 67.0909
 
 [node name="paddle" type="Area2D"]
 rotation = 1.5708
+scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8.99989, -30)
+rotation = 1.5708
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_4l6nu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(52, -90)
+position = Vector2(9.0908, -30)
 shape = SubResource("CapsuleShape2D_o2tv8")
