@@ -1,19 +1,18 @@
 extends Area2D
 
-#Global Variables
-signal _on_gem_off_screen
-
-@export var yAxis: float = 100
-
+@export var xAxis: float = 310
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.y += yAxis * delta
-	if position.y > get_viewport_rect().size.y:
-		_on_gem_off_screen.emit()
-		#position.y = 0
-		queue_free()
-		set_process(false)
+	if Input.is_action_pressed("paddle_left"):
+		position.x -= xAxis * delta
+	if Input.is_action_pressed("paddle_right"):
+		position.x += xAxis * delta
+
+func _on_gem_area_entered(area: Area2D) -> void:
+	
+	print(area)
