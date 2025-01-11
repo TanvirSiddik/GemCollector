@@ -1,5 +1,5 @@
 extends Area2D
-
+class_name Gem
 #Global Variables
 signal _on_gem_off_screen
 
@@ -14,6 +14,5 @@ func _process(delta: float) -> void:
 	position.y += yAxis * delta
 	if position.y > get_viewport_rect().size.y:
 		_on_gem_off_screen.emit()
-		#position.y = 0
 		queue_free()
-		set_process(false)
+ 

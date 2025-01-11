@@ -21,5 +21,3 @@ texture = ExtResource("1_4l6nu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9.0908, -30)
 shape = SubResource("CapsuleShape2D_o2tv8")
-
-[connection signal="area_entered" from="." to="." method="_on_gem_area_entered"]

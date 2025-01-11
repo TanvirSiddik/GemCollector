@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cknvfrmlnh6gs"]
+[gd_scene load_steps=9 format=3 uid="uid://cknvfrmlnh6gs"]
 
 [ext_resource type="Texture2D" uid="uid://brmpc2tv1nvif" path="res://assets/GameBg.png" id="1_c8qki"]
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_u31fm"]
 [ext_resource type="PackedScene" uid="uid://cvdrtwmo02jlo" path="res://Scenes/paddle.tscn" id="2_jl51b"]
 [ext_resource type="PackedScene" uid="uid://cssnvdqk48agi" path="res://Scenes/gem.tscn" id="3_mei2q"]
+[ext_resource type="AudioStream" uid="uid://b4d5l484cur8v" path="res://assets/bgm_action_5.mp3" id="5_btpyd"]
+[ext_resource type="AudioStream" uid="uid://bsb4ys1tk0k14" path="res://assets/spell1_0.wav" id="6_mg4bb"]
+[ext_resource type="AudioStream" uid="uid://cmcvhlboyvfh1" path="res://assets/explode.wav" id="7_6hv3g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2n7e"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u31fm")
@@ -14,12 +19,49 @@ position = Vector2(640.5, 400.5)
 scale = Vector2(0.667188, 0.741666)
 texture = ExtResource("1_c8qki")
 
-[node name="paddle" parent="." instance=ExtResource("2_jl51b")]
-position = Vector2(594, 730)
-scale = Vector2(1.5, 2)
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 12.0
+offset_right = 66.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 45
+text = "0"
+
+[node name="Label2" type="Label" parent="."]
+z_index = 5
+offset_left = 350.0
+offset_top = 336.0
+offset_right = 893.0
+offset_bottom = 473.0
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+
+[node name="paddle" parent="." instance=ExtResource("2_jl51b")]
+position = Vector2(594, 730)
+scale = Vector2(1.5, 2)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(150, 654)
+scale = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_t2n7e")
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
+position = Vector2(1129, 650)
+scale = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_t2n7e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_btpyd")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mg4bb")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6hv3g")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="paddle" to="." method="_on_paddle_area_entered"]
